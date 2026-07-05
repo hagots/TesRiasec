@@ -14,184 +14,79 @@
     }
   </script>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-    }
-    body {
-      background: #f5f7fa;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-      border-bottom: 3px solid #3498db;
-      padding-bottom: 12px;
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    .form-group label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 5px;
-      color: #2c3e50;
-    }
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    .btn-primary {
-      background: #3498db;
-      color: white;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.2s;
-    }
-    .btn-primary:hover {
-      background: #2980b9;
-    }
-    .btn-primary:disabled {
-      background: #bdc3c7;
-      cursor: not-allowed;
-    }
-    .btn-secondary {
-      background: #2ecc71;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .btn-secondary:hover {
-      background: #27ae60;
-    }
-    .question-block {
-      margin: 20px 0;
-      padding: 12px 16px;
-      background: #f8fafc;
-      border-radius: 10px;
-      border-left: 4px solid #3498db;
-    }
-    .question-text {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-    .options label {
-      margin-right: 20px;
-      cursor: pointer;
-    }
-    .options input[type="radio"] {
-      margin-right: 4px;
-    }
-    .results {
-      margin-top: 30px;
-      padding: 20px;
-      background: #eaf2f8;
-      border-radius: 12px;
-      display: none;
-    }
-    .result-item {
-      background: white;
-      padding: 16px 20px;
-      margin: 12px 0;
-      border-radius: 10px;
-      border-left: 8px solid #3498db;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
-    .result-item h3 {
-      margin: 0;
-    }
-    .result-item .score {
-      font-weight: bold;
-      color: #e67e22;
-      font-size: 1.2em;
-    }
-    .result-item .desc {
-      margin-top: 8px;
-      color: #34495e;
-      line-height: 1.6;
-    }
-    .rank-badge {
-      display: inline-block;
-      background: #2c3e50;
-      color: white;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      text-align: center;
-      line-height: 28px;
-      font-weight: bold;
-      margin-right: 12px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      color: #7f8c8d;
-      font-size: 0.9em;
-    }
-    .hidden {
-      display: none;
-    }
-    .admin-link {
-      text-align: right;
-      margin-bottom: 10px;
-    }
-    .admin-link a {
-      color: #7f8c8d;
-      text-decoration: none;
-      font-size: 0.9em;
-    }
-    .admin-link a:hover {
-      color: #3498db;
-    }
-    .history-box {
-      margin-top: 30px;
-      padding: 20px;
-      background: #fef9e7;
-      border-radius: 12px;
-      border: 1px solid #f1c40f;
-    }
-    .history-item {
-      padding: 8px 0;
-      border-bottom: 1px dashed #ddd;
-    }
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    body { background: #f5f7fa; margin: 0; padding: 20px; }
+    .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    h1, h2 { text-align: center; color: #2c3e50; }
+    h1 { border-bottom: 3px solid #3498db; padding-bottom: 12px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50; }
+    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+    .btn-primary { background: #3498db; color: white; border: none; padding: 14px; border-radius: 30px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s; }
+    .btn-primary:hover { background: #2980b9; }
+    .btn-primary:disabled { background: #bdc3c7; cursor: not-allowed; }
+    .btn-danger { background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; }
+    .btn-danger:hover { background: #c0392b; }
+    .question-block { margin: 20px 0; padding: 12px 16px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #3498db; }
+    .question-text { font-size: 16px; margin-bottom: 8px; }
+    .options label { margin-right: 20px; cursor: pointer; }
+    .options input[type="radio"] { margin-right: 4px; }
+    .results { margin-top: 30px; padding: 20px; background: #eaf2f8; border-radius: 12px; display: none; }
+    .result-item { background: white; padding: 16px 20px; margin: 12px 0; border-radius: 10px; border-left: 8px solid #3498db; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .result-item h3 { margin: 0; }
+    .result-item .score { font-weight: bold; color: #e67e22; font-size: 1.2em; }
+    .result-item .desc { margin-top: 8px; color: #34495e; line-height: 1.6; }
+    .rank-badge { display: inline-block; background: #2c3e50; color: white; border-radius: 50%; width: 28px; height: 28px; text-align: center; line-height: 28px; font-weight: bold; margin-right: 12px; }
+    .footer { text-align: center; margin-top: 30px; color: #7f8c8d; font-size: 0.9em; }
+    .hidden { display: none; }
+    .admin-link { text-align: right; margin-bottom: 10px; }
+    .admin-link a { color: #7f8c8d; text-decoration: none; font-size: 0.9em; }
+    .admin-link a:hover { color: #3498db; }
+    .login-box { max-width: 400px; margin: 20px auto; padding: 20px; background: #f8f9fa; border-radius: 12px; }
+    .login-box input { margin-bottom: 10px; }
+    .toggle-link { text-align: center; margin-top: 10px; }
+    .toggle-link span { color: #3498db; cursor: pointer; text-decoration: underline; }
+    .error-msg { color: #e74c3c; text-align: center; margin-top: 10px; }
+    .user-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #ecf0f1; padding: 10px 20px; border-radius: 30px; }
+    .user-info span { font-weight: bold; }
     @media (max-width: 600px) {
-      .options label {
-        display: inline-block;
-        margin-right: 12px;
-      }
+      .options label { display: inline-block; margin-right: 12px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="admin-link"><a href="admin.html" target="_blank">👤 Admin Panel</a></div>
-    <h1>🧠 Tes Minat RIASEC</h1>
-    <p style="text-align:center; color:#555;" id="userStatus">⏳ Menyiapkan sesi aman...</p>
+<div class="container">
+  <div class="admin-link"><a href="admin.html" target="_blank">👤 Admin Panel</a></div>
+  <h1>🧠 Tes Minat RIASEC</h1>
 
-    <!-- FORM REGISTRASI -->
+  <div id="userStatus" style="text-align:center; margin-bottom:20px;"></div>
+
+  <!-- LOGIN / REGISTRASI -->
+  <div id="authSection">
+    <div class="login-box">
+      <h2 id="authTitle">🔐 Login</h2>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="emailInput" placeholder="email@contoh.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="passwordInput" placeholder="minimal 6 karakter" />
+      </div>
+      <button class="btn-primary" id="authBtn">Masuk</button>
+      <div id="authError" class="error-msg"></div>
+      <div class="toggle-link">
+        <span id="toggleAuth">Belum punya akun? Daftar</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISI DATA DIRI -->
+  <div id="profileSection" class="hidden">
+    <div class="user-info">
+      <span>👤 <span id="userEmailDisplay"></span></span>
+      <button class="btn-danger" id="logoutBtn">Keluar</button>
+    </div>
     <div id="registrationForm">
       <div class="form-group">
         <label>Nama Lengkap</label>
@@ -216,407 +111,322 @@
       </div>
       <button class="btn-primary" id="startBtn">🚀 Mulai Tes</button>
     </div>
-
-    <!-- KONTENER SOAL (acak, tanpa label kategori) -->
-    <div id="testContainer" class="hidden">
-      <div id="questionsContainer"></div>
-      <button class="btn-primary" id="submitBtn">📊 Lihat Hasil & Simpan</button>
-    </div>
-
-    <!-- KONTENER HASIL -->
-    <div class="results" id="resultsContainer">
-      <h2 style="text-align:center; color:#2c3e50;">📊 Hasil Minat Saya</h2>
-      <div id="resultList"></div>
-      <p style="text-align:center; margin-top:20px; color:#2c3e50;">
-        ✅ Data Anda telah tersimpan dengan aman.
-      </p>
-      <button class="btn-secondary" id="historyBtn">📜 Lihat Riwayat Hasil Saya</button>
-    </div>
-
-    <!-- RIWAYAT PRIBADI -->
-    <div id="historyContainer" class="hidden history-box">
-      <h3>📜 Riwayat Tes Saya</h3>
-      <div id="historyList"><em>Memuat...</em></div>
-    </div>
-
-    <div class="footer">
-      Berdasarkan teori Holland · Kode minat membantu menemukan jurusan/karier yang cocok.
-    </div>
   </div>
 
-  <script type="module">
-    // ============================================================
-    // 1. IMPOR FIREBASE
-    // ============================================================
-    import { initializeApp } from 'firebase/app';
-    import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      query,
-      where,
-      orderBy,
-      getDocs,
-      serverTimestamp
-    } from 'firebase/firestore';
+  <!-- SOAL -->
+  <div id="testContainer" class="hidden">
+    <div id="questionsContainer"></div>
+    <button class="btn-primary" id="submitBtn">📊 Lihat Hasil & Simpan</button>
+  </div>
 
-    // ============================================================
-    // 2. KONFIGURASI FIREBASE (dari Anda)
-    // ============================================================
-    const firebaseConfig = {
-      apiKey: 'AIzaSyCU-KgCUo-ma5chOEVpnZ2ycpVWC2spIg8',
-      authDomain: 'tes-riasec-rana.firebaseapp.com',
-      projectId: 'tes-riasec-rana',
-      storageBucket: 'tes-riasec-rana.firebasestorage.app',
-      messagingSenderId: '940488035527',
-      appId: '1:940488035527:web:2157e4235363cc4f4802e2'
-    };
+  <!-- HASIL -->
+  <div class="results" id="resultsContainer">
+    <h2 style="text-align:center; color:#2c3e50;">📊 Hasil Minat Saya</h2>
+    <div id="resultList"></div>
+    <p style="text-align:center; margin-top:20px; color:#2c3e50;">✅ Data Anda telah tersimpan.</p>
+    <!-- Tombol riwayat dihilangkan -->
+  </div>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+  <div class="footer">Berdasarkan teori Holland · Kode minat membantu menemukan jurusan/karier yang cocok.</div>
+</div>
 
-    // ============================================================
-    // 3. LOGIN ANONIM OTOMATIS
-    // ============================================================
-    let currentUid = null;
-    const userStatusEl = document.getElementById('userStatus');
+<script type="module">
+  // ============================================================
+  // 1. IMPOR FIREBASE
+  // ============================================================
+  import { initializeApp } from 'firebase/app';
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+  } from 'firebase/auth';
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+  } from 'firebase/firestore';
 
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        currentUid = user.uid;
-        userStatusEl.innerHTML = `✅ Sesi aman aktif (ID: ${currentUid.substring(0, 8)}...)`;
+  // ============================================================
+  // 2. KONFIGURASI (dari Anda)
+  // ============================================================
+  const firebaseConfig = {
+    apiKey: 'AIzaSyCU-KgCUo-ma5chOEVpnZ2ycpVWC2spIg8',
+    authDomain: 'tes-riasec-rana.firebaseapp.com',
+    projectId: 'tes-riasec-rana',
+    storageBucket: 'tes-riasec-rana.firebasestorage.app',
+    messagingSenderId: '940488035527',
+    appId: '1:940488035527:web:2157e4235363cc4f4802e2'
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ============================================================
+  // 3. ELEMEN DOM
+  // ============================================================
+  const authSection = document.getElementById('authSection');
+  const profileSection = document.getElementById('profileSection');
+  const authBtn = document.getElementById('authBtn');
+  const authTitle = document.getElementById('authTitle');
+  const emailInput = document.getElementById('emailInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const authError = document.getElementById('authError');
+  const toggleAuth = document.getElementById('toggleAuth');
+  const userEmailDisplay = document.getElementById('userEmailDisplay');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  const registrationForm = document.getElementById('registrationForm');
+  const startBtn = document.getElementById('startBtn');
+  const testContainer = document.getElementById('testContainer');
+  const questionsContainer = document.getElementById('questionsContainer');
+  const submitBtn = document.getElementById('submitBtn');
+  const resultsContainer = document.getElementById('resultsContainer');
+  const resultList = document.getElementById('resultList');
+
+  let isLoginMode = true;
+  let currentUid = null;
+  let pesertaData = {};
+
+  // ============================================================
+  // 4. DATA PERTANYAAN & FUNGSI ACK
+  // ============================================================
+  const categories = [
+    { id: 'R', label: 'Realistik (R)', desc: 'Orang Realistik sering pandai dalam pekerjaan mekanik atau atletik. Jurusan: Pertanian, Asisten Kesehatan, Komputer, Konstruksi, Mekanik/Mesin, Teknik, Makanan dan Perhotelan. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
+      questions: ['Saya suka memperbaiki barang-barang rusak.','Saya lebih suka bekerja di luar ruangan.','Saya menikmati kegiatan fisik seperti olahraga.','Saya tertarik dengan cara kerja mesin.','Saya suka membuat atau merakit sesuatu dengan tangan.','Saya lebih memilih pekerjaan yang aktif daripada duduk di meja.','Saya sering menggunakan alat-alat perkakas.'] },
+    { id: 'I', label: 'Investigatif (I)', desc: 'Orang Investigatif suka mengamati, belajar, menganalisis dan memecahkan masalah. Jurusan: Biologi Kelautan, Teknik, Kimia, Zoologi, Kedokteran/Bedah, Ekonomi Konsumen, Psikologi. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
+      questions: ['Saya suka memecahkan teka-teki atau soal logika.','Saya senang melakukan eksperimen ilmiah.','Saya suka membaca buku nonfiksi tentang sains.','Saya sering bertanya "mengapa" tentang hal-hal di sekitar.','Saya menikmati penelitian untuk menemukan jawaban.','Saya suka menganalisis data atau statistik.','Saya tertarik dengan penemuan-penemuan baru.'] },
+    { id: 'A', label: 'Artistik (A)', desc: 'Orang Artistik suka bekerja dalam situasi tidak terstruktur di mana mereka dapat menggunakan kreativitas mereka. Jurusan: Komunikasi, Tata Rias, Seni Pertunjukan, Fotografi, Radio dan TV, Desain Interior, Arsitektur. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
+      questions: ['Saya suka menggambar, melukis, atau membuat kerajinan.','Saya menikmati menulis cerita atau puisi.','Saya suka mendesain tampilan sesuatu (misal ruangan, pakaian).','Saya sering berimajinasi dan berkhayal.','Saya menikmati pertunjukan seni seperti teater atau musik.','Saya lebih suka pekerjaan yang memungkinkan ekspresi bebas.','Saya suka memotret atau membuat video kreatif.'] },
+    { id: 'S', label: 'Sosial (S)', desc: 'Orang Sosial suka bekerja dengan orang lain, daripada benda. Jurusan: Konseling, Keperawatan, Fisioterapi, Perjalanan/Travel, Periklanan, Hubungan Masyarakat, Pendidikan. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
+      questions: ['Saya suka membantu teman yang sedang kesulitan.','Saya menikmati menjadi relawan di kegiatan sosial.','Saya lebih suka bekerja dalam tim daripada sendiri.','Saya mudah berempati dengan perasaan orang lain.','Saya suka mengajar atau menjelaskan sesuatu kepada orang lain.','Saya menikmati berbicara dan berinteraksi dengan banyak orang.','Saya peduli terhadap kesejahteraan orang lain.'] },
+    { id: 'E', label: 'Enterprising (E)', desc: 'Orang Enterprising suka bekerja dengan orang lain dan menikmati membujuk serta tampil. Jurusan: Merchandising Busana, Real Estat, Pemasaran/Penjualan, Hukum, Ilmu Politik, Perdagangan Internasional, Perbankan/Keuangan. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
+      questions: ['Saya suka menjadi pemimpin dalam sebuah proyek.','Saya menikmati mempromosikan atau menjual sesuatu.','Saya suka mempengaruhi orang lain untuk mengikuti ide saya.','Saya tertarik dengan dunia bisnis dan keuangan.','Saya suka berkompetisi dan memenangkan perlombaan.','Saya percaya diri berbicara di depan umum.','Saya suka mengambil risiko untuk mencapai tujuan.'] },
+    { id: 'C', label: 'Konvensional (C)', desc: 'Orang Konvensional sangat berorientasi pada detail, terorganisir dan suka bekerja dengan data. Jurusan: Akuntansi, Pencatatan Hukum, Asuransi, Administrasi, Rekam Medis, Perbankan, Pengolahan Data. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
+      questions: ['Saya suka mengatur dan merapikan barang-barang.','Saya teliti dalam mengecek detail pekerjaan.','Saya lebih suka pekerjaan yang terstruktur dan rutin.','Saya menikmati mengelola data atau arsip.','Saya suka membuat daftar dan jadwal.','Saya patuh pada prosedur dan aturan yang ada.','Saya lebih suka pekerjaan kantoran dengan sistem yang jelas.'] }
+  ];
+
+  let shuffledQuestions = [];
+
+  function buildShuffledQuestions() {
+    const all = [];
+    categories.forEach((cat, catIdx) => {
+      cat.questions.forEach((text, qIdx) => {
+        all.push({ catId: cat.id, catIdx, qIdx, text });
+      });
+    });
+    for (let i = all.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [all[i], all[j]] = [all[j], all[i]];
+    }
+    return all;
+  }
+
+  // ============================================================
+  // 5. AUTH STATE
+  // ============================================================
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      currentUid = user.uid;
+      authSection.classList.add('hidden');
+      profileSection.classList.remove('hidden');
+      userEmailDisplay.textContent = user.email;
+      document.getElementById('userStatus').innerHTML = `✅ Login sebagai <strong>${user.email}</strong>`;
+      // Reset tampilan
+      registrationForm.classList.remove('hidden');
+      testContainer.classList.add('hidden');
+      resultsContainer.style.display = 'none';
+    } else {
+      currentUid = null;
+      authSection.classList.remove('hidden');
+      profileSection.classList.add('hidden');
+      document.getElementById('userStatus').innerHTML = '';
+      authError.textContent = '';
+    }
+  });
+
+  // ============================================================
+  // 6. LOGIN / REGISTRASI
+  // ============================================================
+  toggleAuth.addEventListener('click', () => {
+    isLoginMode = !isLoginMode;
+    authTitle.textContent = isLoginMode ? '🔐 Login' : '📝 Daftar';
+    authBtn.textContent = isLoginMode ? 'Masuk' : 'Daftar';
+    toggleAuth.textContent = isLoginMode ? 'Belum punya akun? Daftar' : 'Sudah punya akun? Login';
+    authError.textContent = '';
+  });
+
+  authBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    if (!email || !password) {
+      authError.textContent = 'Email dan password wajib diisi.';
+      return;
+    }
+    authError.textContent = '⏳ Memproses...';
+    try {
+      if (isLoginMode) {
+        await signInWithEmailAndPassword(auth, email, password);
       } else {
-        try {
-          const cred = await signInAnonymously(auth);
-          currentUid = cred.user.uid;
-          userStatusEl.innerHTML = `✅ Sesi anonim aktif (ID: ${currentUid.substring(0, 8)}...)`;
-        } catch (error) {
-          console.error('Gagal login anonim:', error);
-          userStatusEl.innerHTML = '❌ Gagal membuat sesi aman. Refresh halaman.';
-        }
+        await createUserWithEmailAndPassword(auth, email, password);
       }
-    });
+      authError.textContent = '';
+    } catch (error) {
+      console.error(error);
+      authError.textContent = '❌ ' + error.message;
+    }
+  });
 
-    // ============================================================
-    // 4. DATA KATEGORI & PERTANYAAN
-    // ============================================================
-    const categories = [{
-      id: 'R',
-      label: 'Realistik (R)',
-      desc: 'Orang Realistik sering pandai dalam pekerjaan mekanik atau atletik. Jurusan: Pertanian, Asisten Kesehatan, Komputer, Konstruksi, Mekanik/Mesin, Teknik, Makanan dan Perhotelan. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
-      questions: [
-        'Saya suka memperbaiki barang-barang rusak.',
-        'Saya lebih suka bekerja di luar ruangan.',
-        'Saya menikmati kegiatan fisik seperti olahraga.',
-        'Saya tertarik dengan cara kerja mesin.',
-        'Saya suka membuat atau merakit sesuatu dengan tangan.',
-        'Saya lebih memilih pekerjaan yang aktif daripada duduk di meja.',
-        'Saya sering menggunakan alat-alat perkakas.'
-      ]
-    }, {
-      id: 'I',
-      label: 'Investigatif (I)',
-      desc: 'Orang Investigatif suka mengamati, belajar, menganalisis dan memecahkan masalah. Jurusan: Biologi Kelautan, Teknik, Kimia, Zoologi, Kedokteran/Bedah, Ekonomi Konsumen, Psikologi. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
-      questions: [
-        'Saya suka memecahkan teka-teki atau soal logika.',
-        'Saya senang melakukan eksperimen ilmiah.',
-        'Saya suka membaca buku nonfiksi tentang sains.',
-        'Saya sering bertanya "mengapa" tentang hal-hal di sekitar.',
-        'Saya menikmati penelitian untuk menemukan jawaban.',
-        'Saya suka menganalisis data atau statistik.',
-        'Saya tertarik dengan penemuan-penemuan baru.'
-      ]
-    }, {
-      id: 'A',
-      label: 'Artistik (A)',
-      desc: 'Orang Artistik suka bekerja dalam situasi tidak terstruktur di mana mereka dapat menggunakan kreativitas mereka. Jurusan: Komunikasi, Tata Rias, Seni Pertunjukan, Fotografi, Radio dan TV, Desain Interior, Arsitektur. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
-      questions: [
-        'Saya suka menggambar, melukis, atau membuat kerajinan.',
-        'Saya menikmati menulis cerita atau puisi.',
-        'Saya suka mendesain tampilan sesuatu (misal ruangan, pakaian).',
-        'Saya sering berimajinasi dan berkhayal.',
-        'Saya menikmati pertunjukan seni seperti teater atau musik.',
-        'Saya lebih suka pekerjaan yang memungkinkan ekspresi bebas.',
-        'Saya suka memotret atau membuat video kreatif.'
-      ]
-    }, {
-      id: 'S',
-      label: 'Sosial (S)',
-      desc: 'Orang Sosial suka bekerja dengan orang lain, daripada benda. Jurusan: Konseling, Keperawatan, Fisioterapi, Perjalanan/Travel, Periklanan, Hubungan Masyarakat, Pendidikan. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
-      questions: [
-        'Saya suka membantu teman yang sedang kesulitan.',
-        'Saya menikmati menjadi relawan di kegiatan sosial.',
-        'Saya lebih suka bekerja dalam tim daripada sendiri.',
-        'Saya mudah berempati dengan perasaan orang lain.',
-        'Saya suka mengajar atau menjelaskan sesuatu kepada orang lain.',
-        'Saya menikmati berbicara dan berinteraksi dengan banyak orang.',
-        'Saya peduli terhadap kesejahteraan orang lain.'
-      ]
-    }, {
-      id: 'E',
-      label: 'Enterprising (E)',
-      desc: 'Orang Enterprising suka bekerja dengan orang lain dan menikmati membujuk serta tampil. Jurusan: Merchandising Busana, Real Estat, Pemasaran/Penjualan, Hukum, Ilmu Politik, Perdagangan Internasional, Perbankan/Keuangan. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
-      questions: [
-        'Saya suka menjadi pemimpin dalam sebuah proyek.',
-        'Saya menikmati mempromosikan atau menjual sesuatu.',
-        'Saya suka mempengaruhi orang lain untuk mengikuti ide saya.',
-        'Saya tertarik dengan dunia bisnis dan keuangan.',
-        'Saya suka berkompetisi dan memenangkan perlombaan.',
-        'Saya percaya diri berbicara di depan umum.',
-        'Saya suka mengambil risiko untuk mencapai tujuan.'
-      ]
-    }, {
-      id: 'C',
-      label: 'Konvensional (C)',
-      desc: 'Orang Konvensional sangat berorientasi pada detail, terorganisir dan suka bekerja dengan data. Jurusan: Akuntansi, Pencatatan Hukum, Asuransi, Administrasi, Rekam Medis, Perbankan, Pengolahan Data. Jalur: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
-      questions: [
-        'Saya suka mengatur dan merapikan barang-barang.',
-        'Saya teliti dalam mengecek detail pekerjaan.',
-        'Saya lebih suka pekerjaan yang terstruktur dan rutin.',
-        'Saya menikmati mengelola data atau arsip.',
-        'Saya suka membuat daftar dan jadwal.',
-        'Saya patuh pada prosedur dan aturan yang ada.',
-        'Saya lebih suka pekerjaan kantoran dengan sistem yang jelas.'
-      ]
-    }];
+  passwordInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') authBtn.click();
+  });
 
-    // ============================================================
-    // 5. BUAT DAFTAR SEMUA PERTANYAAN + ACKAN
-    // ============================================================
-    function buildShuffledQuestions() {
-      const all = [];
-      categories.forEach((cat, catIdx) => {
-        cat.questions.forEach((text, qIdx) => {
-          all.push({
-            catId: cat.id,
-            catIdx: catIdx,
-            qIdx: qIdx,
-            text: text
-          });
-        });
+  // ============================================================
+  // 7. LOGOUT
+  // ============================================================
+  logoutBtn.addEventListener('click', async () => {
+    await signOut(auth);
+  });
+
+  // ============================================================
+  // 8. MULAI TES
+  // ============================================================
+  startBtn.addEventListener('click', function () {
+    const nama = document.getElementById('nama').value.trim();
+    const pendidikan = document.getElementById('pendidikan').value;
+    const umur = parseInt(document.getElementById('umur').value);
+    if (!nama) { alert('Nama wajib diisi!'); return; }
+    if (!umur || umur < 1) { alert('Umur wajib diisi dengan angka yang valid!'); return; }
+    pesertaData = { nama, pendidikan, umur };
+
+    registrationForm.classList.add('hidden');
+    testContainer.classList.remove('hidden');
+    shuffledQuestions = buildShuffledQuestions();
+    renderShuffledQuestions();
+  });
+
+  function renderShuffledQuestions() {
+    questionsContainer.innerHTML = '';
+    shuffledQuestions.forEach((item, index) => {
+      const block = document.createElement('div');
+      block.className = 'question-block';
+      const qText = document.createElement('div');
+      qText.className = 'question-text';
+      qText.textContent = `${index + 1}. ${item.text}`;
+      block.appendChild(qText);
+
+      const optDiv = document.createElement('div');
+      optDiv.className = 'options';
+      const radioSet = [
+        { value: '1', label: 'Setuju' },
+        { value: '0', label: 'Tidak Setuju' }
+      ];
+      radioSet.forEach(r => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = `q_${index}`;
+        input.value = r.value;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(' ' + r.label));
+        optDiv.appendChild(label);
+        optDiv.appendChild(document.createTextNode(' '));
       });
-      // Fisher-Yates shuffle
-      for (let i = all.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [all[i], all[j]] = [all[j], all[i]];
-      }
-      return all;
+      block.appendChild(optDiv);
+      questionsContainer.appendChild(block);
+    });
+  }
+
+  // ============================================================
+  // 9. SUBMIT & SIMPAN
+  // ============================================================
+  submitBtn.addEventListener('click', async function () {
+    const btn = this;
+    btn.disabled = true;
+    btn.textContent = '⏳ Menyimpan...';
+
+    if (!currentUid) {
+      alert('Anda belum login. Silakan login terlebih dahulu.');
+      btn.disabled = false;
+      btn.textContent = '📊 Lihat Hasil & Simpan';
+      return;
     }
 
-    let shuffledQuestions = [];
-
-    // ============================================================
-    // 6. LOGIKA APLIKASI
-    // ============================================================
-    let pesertaData = {};
-
-    const startBtn = document.getElementById('startBtn');
-    const registrationForm = document.getElementById('registrationForm');
-    const testContainer = document.getElementById('testContainer');
-    const questionsContainer = document.getElementById('questionsContainer');
-    const submitBtn = document.getElementById('submitBtn');
-    const resultsContainer = document.getElementById('resultsContainer');
-    const resultList = document.getElementById('resultList');
-    const historyBtn = document.getElementById('historyBtn');
-    const historyContainer = document.getElementById('historyContainer');
-    const historyList = document.getElementById('historyList');
-
-    startBtn.addEventListener('click', function () {
-      const nama = document.getElementById('nama').value.trim();
-      const pendidikan = document.getElementById('pendidikan').value;
-      const umur = parseInt(document.getElementById('umur').value);
-
-      if (!nama) { alert('Nama wajib diisi!'); return; }
-      if (!umur || umur < 1) { alert('Umur wajib diisi dengan angka yang valid!'); return; }
-
-      pesertaData = { nama, pendidikan, umur };
-      registrationForm.classList.add('hidden');
-      testContainer.classList.remove('hidden');
-
-      // Buat ulang pertanyaan acak setiap kali memulai
-      shuffledQuestions = buildShuffledQuestions();
-      renderShuffledQuestions();
-    });
-
-    function renderShuffledQuestions() {
-      questionsContainer.innerHTML = '';
-      shuffledQuestions.forEach((item, index) => {
-        const block = document.createElement('div');
-        block.className = 'question-block';
-        const qText = document.createElement('div');
-        qText.className = 'question-text';
-        qText.textContent = `${index + 1}. ${item.text}`;
-        block.appendChild(qText);
-
-        const optDiv = document.createElement('div');
-        optDiv.className = 'options';
-        const radioSet = [
-          { value: '1', label: 'Setuju' },
-          { value: '0', label: 'Tidak Setuju' }
-        ];
-        radioSet.forEach(r => {
-          const label = document.createElement('label');
-          const input = document.createElement('input');
-          input.type = 'radio';
-          input.name = `q_${index}`; // nama unik berdasarkan posisi acak
-          input.value = r.value;
-          label.appendChild(input);
-          label.appendChild(document.createTextNode(' ' + r.label));
-          optDiv.appendChild(label);
-          optDiv.appendChild(document.createTextNode(' '));
-        });
-        block.appendChild(optDiv);
-        questionsContainer.appendChild(block);
-      });
-    }
-
-    // ============================================================
-    // 7. SUBMIT & HITUNG SKOR
-    // ============================================================
-    submitBtn.addEventListener('click', async function () {
-      const btn = this;
-      btn.disabled = true;
-      btn.textContent = '⏳ Menyimpan...';
-
-      if (!currentUid) {
-        alert('Sesi belum siap. Tunggu sebentar atau refresh halaman.');
+    const answers = [];
+    for (let i = 0; i < shuffledQuestions.length; i++) {
+      const radios = document.querySelectorAll(`input[name="q_${i}"]`);
+      let selected = null;
+      radios.forEach(r => { if (r.checked) selected = r.value; });
+      if (selected === null) {
+        alert(`Pertanyaan nomor ${i + 1} belum dijawab. Harap lengkapi semua!`);
         btn.disabled = false;
         btn.textContent = '📊 Lihat Hasil & Simpan';
         return;
       }
+      answers.push(parseInt(selected, 10));
+    }
 
-      // Kumpulkan jawaban dari semua pertanyaan acak
-      const answers = [];
-      for (let i = 0; i < shuffledQuestions.length; i++) {
-        const radios = document.querySelectorAll(`input[name="q_${i}"]`);
-        let selected = null;
-        radios.forEach(r => { if (r.checked) selected = r.value; });
-        if (selected === null) {
-          alert(`Pertanyaan nomor ${i + 1} belum dijawab. Harap lengkapi semua!`);
-          btn.disabled = false;
-          btn.textContent = '📊 Lihat Hasil & Simpan';
-          return;
-        }
-        answers.push(parseInt(selected, 10)); // 1 = setuju, 0 = tidak
+    const scoreMap = {};
+    categories.forEach(cat => { scoreMap[cat.id] = 0; });
+
+    shuffledQuestions.forEach((item, idx) => {
+      if (answers[idx] === 1) {
+        scoreMap[item.catId] = (scoreMap[item.catId] || 0) + 1;
       }
+    });
 
-      // Hitung skor per kategori
-      const scoreMap = {};
-      categories.forEach(cat => { scoreMap[cat.id] = 0; });
+    const scores = categories.map(cat => ({
+      id: cat.id,
+      label: cat.label,
+      score: scoreMap[cat.id] || 0,
+      desc: cat.desc
+    }));
 
-      shuffledQuestions.forEach((item, idx) => {
-        const catId = item.catId;
-        if (answers[idx] === 1) {
-          scoreMap[catId] = (scoreMap[catId] || 0) + 1;
-        }
+    const dataToSave = {
+      nama: pesertaData.nama,
+      pendidikan: pesertaData.pendidikan,
+      umur: pesertaData.umur,
+      scores: scoreMap,
+      uid: currentUid,
+      timestamp: serverTimestamp()
+    };
+
+    try {
+      await addDoc(collection(db, 'riasec_results'), dataToSave);
+      console.log('Data berhasil disimpan!');
+
+      const sorted = scores.slice().sort((a, b) => b.score - a.score);
+      resultsContainer.style.display = 'block';
+      resultList.innerHTML = '';
+      sorted.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        const colors = ['#e67e22', '#3498db', '#2ecc71', '#9b59b6', '#f1c40f', '#e74c3c'];
+        div.style.borderLeftColor = colors[index % colors.length];
+        div.innerHTML = `
+          <div style="display:flex; align-items:center; flex-wrap:wrap;">
+            <span class="rank-badge">${index + 1}</span>
+            <h3>${item.label} <span class="score">(${item.score}/7)</span></h3>
+          </div>
+          <div class="desc">${item.desc}</div>
+        `;
+        resultList.appendChild(div);
       });
 
-      // Bentuk array skor untuk ditampilkan
-      const scores = categories.map(cat => ({
-        id: cat.id,
-        label: cat.label,
-        score: scoreMap[cat.id] || 0,
-        desc: cat.desc
-      }));
+      testContainer.classList.add('hidden');
+      resultsContainer.scrollIntoView({ behavior: 'smooth' });
 
-      // Simpan ke Firestore
-      const dataToSave = {
-        nama: pesertaData.nama,
-        pendidikan: pesertaData.pendidikan,
-        umur: pesertaData.umur,
-        scores: scoreMap,
-        uid: currentUid,
-        timestamp: serverTimestamp()
-      };
+    } catch (error) {
+      console.error('Gagal simpan:', error);
+      alert('Gagal menyimpan: ' + error.message);
+    }
 
-      try {
-        await addDoc(collection(db, 'riasec_results'), dataToSave);
-        console.log('Data berhasil disimpan!');
-
-        // Tampilkan hasil (urut dari skor tertinggi)
-        const sorted = scores.slice().sort((a, b) => b.score - a.score);
-        resultsContainer.style.display = 'block';
-        resultList.innerHTML = '';
-        sorted.forEach((item, index) => {
-          const div = document.createElement('div');
-          div.className = 'result-item';
-          const colors = ['#e67e22', '#3498db', '#2ecc71', '#9b59b6', '#f1c40f', '#e74c3c'];
-          div.style.borderLeftColor = colors[index % colors.length];
-          div.innerHTML = `
-            <div style="display:flex; align-items:center; flex-wrap:wrap;">
-              <span class="rank-badge">${index + 1}</span>
-              <h3>${item.label} <span class="score">(${item.score}/7)</span></h3>
-            </div>
-            <div class="desc">${item.desc}</div>
-          `;
-          resultList.appendChild(div);
-        });
-
-        testContainer.classList.add('hidden');
-        resultsContainer.scrollIntoView({ behavior: 'smooth' });
-
-      } catch (error) {
-        console.error('Gagal simpan:', error);
-        alert('Terjadi kesalahan saat menyimpan data. Coba lagi nanti.\n' + error.message);
-      }
-
-      btn.disabled = false;
-      btn.textContent = '📊 Lihat Hasil & Simpan';
-    });
-
-    // ============================================================
-    // 8. RIWAYAT PRIBADI (tetap sama)
-    // ============================================================
-    historyBtn.addEventListener('click', async function () {
-      historyContainer.classList.remove('hidden');
-      historyList.innerHTML = '⏳ Memuat riwayat pribadi...';
-
-      if (!currentUid) {
-        historyList.innerHTML = '❌ Sesi tidak valid.';
-        return;
-      }
-
-      try {
-        const q = query(
-          collection(db, 'riasec_results'),
-          where('uid', '==', currentUid),
-          orderBy('timestamp', 'desc')
-        );
-        const snapshot = await getDocs(q);
-
-        if (snapshot.empty) {
-          historyList.innerHTML = '📭 Belum ada riwayat tes untuk Anda.';
-          return;
-        }
-
-        let html = '';
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          const scores = data.scores || {};
-          const waktu = data.timestamp?.toDate?.()
-            ? data.timestamp.toDate().toLocaleString('id-ID')
-            : 'Tidak diketahui';
-          html += `
-            <div class="history-item">
-              <strong>${data.nama || 'Tanpa nama'}</strong>
-              (${data.pendidikan || '-'}, ${data.umur || '-'} thn)
-              — Skor: R=${scores.R || 0}, I=${scores.I || 0}, A=${scores.A || 0},
-              S=${scores.S || 0}, E=${scores.E || 0}, C=${scores.C || 0}
-              <br /><small>🕒 ${waktu}</small>
-            </div>
-          `;
-        });
-        historyList.innerHTML = html;
-
-      } catch (error) {
-        console.error('Gagal ambil riwayat:', error);
-        historyList.innerHTML =
-          '❌ Gagal memuat riwayat. Pastikan aturan keamanan sudah diatur.\n' +
-          error.message;
-      }
-    });
-  </script>
+    btn.disabled = false;
+    btn.textContent = '📊 Lihat Hasil & Simpan';
+  });
+</script>
 </body>
 </html>
