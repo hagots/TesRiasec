@@ -11,9 +11,9 @@
     h1 { text-align: center; color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 12px; }
     .section { margin: 30px 0; border-left: 5px solid #3498db; padding-left: 20px; }
     .section h2 { color: #2c3e50; margin-bottom: 10px; }
-    .question { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ecf0f1; }
-    .question span { flex: 1; margin-right: 15px; }
-    .options label { margin: 0 8px; cursor: pointer; }
+    .question { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ecf0f1; flex-wrap: wrap; }
+    .question span { flex: 1; margin-right: 15px; min-width: 180px; }
+    .options label { margin: 0 8px 0 0; cursor: pointer; white-space: nowrap; }
     .options input[type="radio"] { margin-right: 4px; }
     .btn { display: block; width: 100%; padding: 14px; background: #3498db; color: white; border: none; border-radius: 30px; font-size: 18px; font-weight: bold; cursor: pointer; margin: 30px 0; transition: 0.2s; }
     .btn:hover { background: #2980b9; }
@@ -21,9 +21,13 @@
     .result-item { background: white; padding: 16px 20px; margin: 12px 0; border-radius: 10px; border-left: 8px solid #3498db; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
     .result-item h3 { margin: 0; color: #2c3e50; }
     .result-item .score { font-weight: bold; color: #e67e22; font-size: 1.2em; }
-    .result-item .desc { margin-top: 8px; color: #34495e; }
+    .result-item .desc { margin-top: 8px; color: #34495e; line-height: 1.6; }
     .rank-badge { display: inline-block; background: #2c3e50; color: white; border-radius: 50%; width: 28px; height: 28px; text-align: center; line-height: 28px; font-weight: bold; margin-right: 12px; }
     .footer { text-align: center; margin-top: 30px; color: #7f8c8d; font-size: 0.9em; }
+    @media (max-width: 600px) {
+      .question { flex-direction: column; align-items: flex-start; }
+      .options { margin-top: 6px; }
+    }
   </style>
 </head>
 <body>
@@ -31,13 +35,12 @@
   <h1>🧠 Tes Minat RIASEC</h1>
   <p style="text-align:center; color:#555;">Jawab setiap pernyataan dengan jujur. Pilih <strong>Setuju</strong> atau <strong>Tidak Setuju</strong>.</p>
 
-  <!-- 6 bagian akan dibuat oleh JavaScript -->
   <div id="questionsContainer"></div>
 
   <button class="btn" id="submitBtn">🔍 Lihat Hasil Saya</button>
 
   <div class="results" id="resultsContainer">
-    <h2 style="text-align:center; color:#2c3e50;">🎯 Tiga Minat Tertinggi Anda</h2>
+    <h2 style="text-align:center; color:#2c3e50;">📊 Semua Hasil Minat (Diurutkan dari Tertinggi ke Terendah)</h2>
     <div id="resultList"></div>
   </div>
   <div class="footer">Berdasarkan teori Holland · Kode minat membantu menemukan jurusan/karier yang cocok.</div>
@@ -45,11 +48,12 @@
 
 <script>
   // ========== DATA PERTANYAAN (6 bagian × 7 pertanyaan) ==========
+  // Deskripsi dan jalur terkait disesuaikan persis dengan isi file PDF RIASEC_copy.pdf
   const categories = [
     {
       id: 'R',
       label: 'Realistik (R)',
-      desc: 'Orang Realistik suka pekerjaan mekanik, outdoor, atau olahraga. Mereka praktis dan suka bekerja dengan alat, mesin, atau hewan. Cocok untuk jurusan: Pertanian, Teknik, Komputer, Konstruksi, Mekanik, Kesehatan, Perhotelan.',
+      desc: 'Orang Realistik sering pandai dalam pekerjaan mekanik atau atletik. Jurusan yang cocok: Pertanian, Asisten Kesehatan, Komputer, Konstruksi, Mekanik/Mesin, Teknik, Makanan dan Perhotelan. Jalur terkait: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
       questions: [
         'Saya suka memperbaiki barang-barang rusak.',
         'Saya lebih suka bekerja di luar ruangan.',
@@ -63,7 +67,7 @@
     {
       id: 'I',
       label: 'Investigatif (I)',
-      desc: 'Orang Investigatif suka mengamati, belajar, menganalisis, dan memecahkan masalah. Mereka ilmiah dan rasa ingin tahu tinggi. Jurusan yang cocok: Biologi Laut, Teknik Kimia, Zoologi, Kedokteran, Psikologi, Ekonomi Konsumen.',
+      desc: 'Orang Investigatif suka mengamati, belajar, menganalisis dan memecahkan masalah. Jurusan yang cocok: Biologi Kelautan, Teknik, Kimia, Zoologi, Kedokteran/Bedah, Ekonomi Konsumen, Psikologi. Jalur terkait: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
       questions: [
         'Saya suka memecahkan teka-teki atau soal logika.',
         'Saya senang melakukan eksperimen ilmiah.',
@@ -77,7 +81,7 @@
     {
       id: 'A',
       label: 'Artistik (A)',
-      desc: 'Orang Artistik suka bekerja dalam situasi tidak terstruktur, menggunakan kreativitas dan imajinasi. Jurusan: Komunikasi, Tata Rias, Seni Pertunjukan, Fotografi, Radio/TV, Desain Interior, Arsitektur.',
+      desc: 'Orang Artistik suka bekerja dalam situasi tidak terstruktur di mana mereka dapat menggunakan kreativitas mereka. Jurusan yang cocok: Komunikasi, Tata Rias, Seni Pertunjukan, Fotografi, Radio dan TV, Desain Interior, Arsitektur. Jalur terkait: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
       questions: [
         'Saya suka menggambar, melukis, atau membuat kerajinan.',
         'Saya menikmati menulis cerita atau puisi.',
@@ -91,7 +95,7 @@
     {
       id: 'S',
       label: 'Sosial (S)',
-      desc: 'Orang Sosial suka bekerja dengan orang lain, membantu, mengajar, atau melayani. Jurusan: Konseling, Keperawatan, Fisioterapi, Pariwisata, Periklanan, Hubungan Masyarakat, Pendidikan.',
+      desc: 'Orang Sosial suka bekerja dengan orang lain, daripada benda. Jurusan yang cocok: Konseling, Keperawatan, Fisioterapi, Perjalanan/Travel, Periklanan, Hubungan Masyarakat, Pendidikan. Jalur terkait: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
       questions: [
         'Saya suka membantu teman yang sedang kesulitan.',
         'Saya menikmati menjadi relawan di kegiatan sosial.',
@@ -105,7 +109,7 @@
     {
       id: 'E',
       label: 'Enterprising (E)',
-      desc: 'Orang Enterprising suka memimpin, membujuk, dan berkinerja. Mereka enerjik dan suka tantangan. Jurusan: Merchandising, Real Estat, Pemasaran, Hukum, Ilmu Politik, Perdagangan Internasional, Perbankan/Keuangan.',
+      desc: 'Orang Enterprising suka bekerja dengan orang lain dan menikmati membujuk serta tampil. Jurusan yang cocok: Merchandising Busana, Real Estat, Pemasaran/Penjualan, Hukum, Ilmu Politik, Perdagangan Internasional, Perbankan/Keuangan. Jalur terkait: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
       questions: [
         'Saya suka menjadi pemimpin dalam sebuah proyek.',
         'Saya menikmati mempromosikan atau menjual sesuatu.',
@@ -119,7 +123,7 @@
     {
       id: 'C',
       label: 'Konvensional (C)',
-      desc: 'Orang Konvensional sangat detail, terorganisir, dan suka bekerja dengan data. Jurusan: Akuntansi, Pencatatan Hukum, Asuransi, Administrasi, Rekam Medis, Perbankan, Pengolahan Data.',
+      desc: 'Orang Konvensional sangat berorientasi pada detail, terorganisir dan suka bekerja dengan data. Jurusan yang cocok: Akuntansi, Pencatatan Hukum, Asuransi, Administrasi, Rekam Medis, Perbankan, Pengolahan Data. Jalur terkait: Kesehatan, Bisnis, Industri & Teknologi Rekayasa.',
       questions: [
         'Saya suka mengatur dan merapikan barang-barang.',
         'Saya teliti dalam mengecek detail pekerjaan.',
@@ -146,7 +150,6 @@
       qDiv.appendChild(qSpan);
       const optDiv = document.createElement('div');
       optDiv.className = 'options';
-      // Radio setuju/tidak
       const radioSet = [
         { value: '1', label: 'Setuju' },
         { value: '0', label: 'Tidak Setuju' }
@@ -170,7 +173,7 @@
 
   // ========== PROSES HASIL ==========
   document.getElementById('submitBtn').addEventListener('click', function() {
-    // Kumpulkan skor per kategori
+    // Hitung skor per kategori
     const scores = categories.map((cat, idx) => {
       let total = 0;
       for (let qIdx = 0; qIdx < cat.questions.length; qIdx++) {
@@ -178,28 +181,26 @@
         let selected = null;
         radios.forEach(r => { if (r.checked) selected = r.value; });
         if (selected === '1') total += 1;
-        // jika tidak dipilih atau '0' tidak menambah skor
       }
       return { id: cat.id, label: cat.label, score: total, desc: cat.desc };
     });
 
-    // Urutkan dari skor tertinggi
+    // Urutkan dari skor tertinggi ke terendah
     const sorted = scores.slice().sort((a, b) => b.score - a.score);
-    const top3 = sorted.slice(0, 3);
 
-    // Tampilkan hasil
+    // Tampilkan SEMUA hasil (6 kategori) sesuai urutan skor
     const resultContainer = document.getElementById('resultsContainer');
     resultContainer.style.display = 'block';
     const list = document.getElementById('resultList');
     list.innerHTML = '';
-    top3.forEach((item, index) => {
+    sorted.forEach((item, index) => {
       const div = document.createElement('div');
       div.className = 'result-item';
-      // warna border sesuai urutan
-      const colors = ['#e67e22', '#3498db', '#2ecc71'];
-      div.style.borderLeftColor = colors[index] || '#3498db';
+      // Warna border berbeda agar menarik
+      const colors = ['#e67e22', '#3498db', '#2ecc71', '#9b59b6', '#f1c40f', '#e74c3c'];
+      div.style.borderLeftColor = colors[index % colors.length];
       div.innerHTML = `
-        <div style="display:flex; align-items:center;">
+        <div style="display:flex; align-items:center; flex-wrap:wrap;">
           <span class="rank-badge">${index+1}</span>
           <h3>${item.label} <span class="score">(${item.score}/7)</span></h3>
         </div>
