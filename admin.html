@@ -92,6 +92,19 @@
       cursor: pointer;
       margin-right: 10px;
     }
+    .download-btn {
+      float: right;
+      background: #f39c12;
+      color: white;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .download-btn:hover {
+      background: #e67e22;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -198,6 +211,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
         <h1>👤 Panel Admin — Data Peserta</h1>
         <div>
+          <button class="download-btn" id="downloadBtn">📥 Download Excel</button>
           <button class="refresh-btn" id="refreshBtn">↻ Muat Ulang</button>
           <button class="logout-btn" id="logoutBtn">🚪 Keluar</button>
         </div>
@@ -414,7 +428,6 @@
       const docId = btn.getAttribute('data-id');
       if (!docId) return;
 
-      // Konfirmasi
       if (!confirm('Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.')) {
         return;
       }
@@ -426,14 +439,11 @@
         const docRef = doc(db, 'riasec_results', docId);
         await deleteDoc(docRef);
         console.log(`Dokumen ${docId} berhasil dihapus.`);
-        // Hapus baris dari tabel tanpa reload seluruh data
         const row = btn.closest('tr');
         if (row) {
           row.remove();
-          // Perbarui nomor urut dan total count
           updateRowNumbersAndCount();
         }
-        // Tampilkan pesan sukses
         alert('Data berhasil dihapus!');
       } catch (error) {
         console.error('Gagal hapus:', error);
@@ -461,7 +471,104 @@
     }
 
     // ============================================================
-    // 11. UTILITY: escapeHtml
+    // 11. FUNGSI EXPORT KE CSV (DOWNLOAD EXCEL)
+    // ============================================================
+    document.getElementById('downloadBtn').addEventListener('click', async function () {
+      const btn = this;
+      btn.disabled = true;
+      btn.textContent = '⏳ Memproses...';
+
+      try {
+        // Ambil semua data dari Firestore (tanpa filter)
+        const q = query(
+          collection(db, 'riasec_results'),
+          orderBy('timestamp', 'desc')
+        );
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+          alert('Tidak ada data untuk diekspor.');
+          btn.disabled = false;
+          btn.textContent = '📥 Download Excel';
+          return;
+        }
+
+        // Buat header CSV
+        const headers = [
+          'No',
+          'Nama',
+          'Pendidikan',
+          'Umur',
+          'R',
+          'I',
+          'A',
+          'S',
+          'E',
+          'C',
+          'Waktu'
+        ];
+
+        // Kumpulkan data
+        const rows = [];
+        let count = 0;
+        snapshot.forEach(docSnap => {
+          count++;
+          const data = docSnap.data();
+          const scores = data.scores || {};
+          const waktu = data.timestamp?.toDate?.()
+            ? data.timestamp.toDate().toLocaleString('id-ID')
+            : 'Tidak diketahui';
+
+          rows.push([
+            count,
+            data.nama || '-',
+            data.pendidikan || '-',
+            data.umur || '-',
+            scores.R ?? 0,
+            scores.I ?? 0,
+            scores.A ?? 0,
+            scores.S ?? 0,
+            scores.E ?? 0,
+            scores.C ?? 0,
+            waktu
+          ]);
+        });
+
+        // Gabungkan header + rows menjadi string CSV
+        let csvContent = headers.join(',') + '\n';
+        rows.forEach(row => {
+          // Escape koma dan tanda kutip jika ada
+          const escapedRow = row.map(cell => {
+            if (typeof cell === 'string' && (cell.includes(',') || cell.includes('"') || cell.includes('\n'))) {
+              return `"${cell.replace(/"/g, '""')}"`;
+            }
+            return cell;
+          });
+          csvContent += escapedRow.join(',') + '\n';
+        });
+
+        // Buat blob dan download
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `riasec_data_${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+      } catch (error) {
+        console.error('Gagal ekspor:', error);
+        alert('Gagal mengekspor data: ' + error.message);
+      }
+
+      btn.disabled = false;
+      btn.textContent = '📥 Download Excel';
+    });
+
+    // ============================================================
+    // 12. UTILITY: escapeHtml
     // ============================================================
     function escapeHtml(text) {
       const div = document.createElement('div');
@@ -470,7 +577,7 @@
     }
 
     // ============================================================
-    // 12. TOMBOL REFRESH
+    // 13. TOMBOL REFRESH
     // ============================================================
     document.getElementById('refreshBtn').addEventListener('click', loadData);
   </script>
